@@ -1,0 +1,80 @@
+#svg-map path {
+    fill: #888888;
+    stroke: #ffffff;
+    stroke-width: 1.0;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#svg-map circle {
+    visibility: hidden;
+    stroke-width: 3;
+    stroke: #ffffff;
+    fill: #ffffff;
+}
+
+#svg-map text {
+    visibility: hidden;
+    fill: #ffffff;
+    font: 16px Arial-BoldMT, sans-serif;
+    text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
+}
+
+#svg-map a:hover path {
+    fill: #900000 !important
+}
+
+#svg-map a:hover circle {
+    visibility: visible;
+}
+
+#svg-map a:hover text {
+    visibility: visible;
+}
+
+#svg-table line {
+    visibility: hidden;
+    fill: #888888;
+    stroke: #000000;
+    stroke-width: 4.2;
+}
+
+#svg-queue rect {
+    stroke: #000000;
+    stroke-width: 2.0;
+    fill-opacity: 1.0;
+    fill: transparent;
+    stroke-opacity: 0.9;
+}
+
+.text-bold {
+    fill: #000000;
+    stroke: #000000;
+    stroke-width: 1.0;
+    font: 24px Arial-BoldMT, sans-serif;
+    visibility: visible;
+}
+
+.text-monospace {
+    font: 20px 'Courier New', monospace;
+}
+
+#svg-states-edges line {
+    visibility: hidden;
+    fill: #888888;
+    stroke: #000000;
+    stroke-width: 4.0;
+}
+
+#svg-table,
+#svg-labels rect {
+    stroke: #000000;
+    stroke-width: 4.0;
+    fill-opacity: 1.0;
+    stroke-opacity: 0.9;
+}
+
+#svg-labels text {
+    fill: #000000;
+    font: 20px Arial-BoldMT, sans-serif;
+}
