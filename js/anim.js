@@ -22,7 +22,6 @@ var AnimManager = function (log) {
 
     this.beginAnim = async () => {
         this.running = true;
-
         for (; this.logIdx < this.log.length && this.running; ++this.logIdx) {
             var status = await this.delay(this.animDelay);
 
@@ -32,17 +31,16 @@ var AnimManager = function (log) {
 
             this.animByIdx();
         }
-
         this.running = false;
     };
 
     this.animByIdx = () => {
         const log = this.log[this.logIdx];
 
-        uiManager.setAllStatesColors(log.result);
+        uiManager.setAllStatesColors(log.colors);
         uiManager.setAllColorsLines(log.availableColors);
         uiManager.setAllBoxesBorders(log.curAvailable);
-        uiManager.setAllStatesBorders(log.curVertice, log.curNeighbor);
+        uiManager.setAllStatesBorders(log.curVertex, log.curNeighbor);
         uiManager.setAllStatesEdges(log.statesEdges);
         uiManager.setAllQueueStates(log.queue);
     };

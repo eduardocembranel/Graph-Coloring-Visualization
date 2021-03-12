@@ -190,9 +190,9 @@ var uiManager = new function () {
         }
     };
 
-    this.setAllStatesBorders = (curVertice, curNeighbor) => {
+    this.setAllStatesBorders = (curVertex, curNeighbor) => {
         for (let i = 0; i < 27; ++i) {
-            if (i === curVertice) {
+            if (i === curVertex) {
                 this.setStateBorder(i, 'highlight');
             } else if (i === curNeighbor) {
                 this.setStateBorder(i, 'highlight2');

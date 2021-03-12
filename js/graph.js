@@ -1,9 +1,18 @@
 class Graph {
     constructor(v) {
         this.v = v;
+
+        //adjacency list
         this.adj = Array.from({
             length: v
         }, e => []);
+        
+        //adjacency matrix
+        this.mat = Array.from({
+            length: v
+        }, e => Array.from({
+            length: v
+        }, e => 0));
     }
 
     addVertex() {
@@ -14,10 +23,15 @@ class Graph {
     addEdge(u, w) {
         this.adj[u].push(w);
         this.adj[w].push(u);
+        this.mat[u][w] = this.mat[w][u] = 1;
+    }
+
+    edgesToStr = (u, v) => {
+        return Math.min(u, v) + '-' + Math.max(u, v);
     }
 
     greedyColoring() {
-        var result = Array.from({
+        var colors = Array.from({
             length: this.v
         }, e => -1);
         var available = Array.from({
@@ -25,54 +39,41 @@ class Graph {
         }, e => false);
         var log = [];
 
+        addLogToArray(log, -1, -1, -1, colors);
+
         for (let u = 0; u < this.v; ++u) {
-            //log
-            log.push(new IterationLog(u, -1, -1,
-                [...result], [...available]));
+            this.solveCurrentVertex(u, colors, available, log);
+        }
 
-            for (const w of this.adj[u]) {
-                //log
-                log.push(new IterationLog(u, w, -1,
-                    [...result], [...available]));
+        addLogToArray(log, -1, -1, -1, colors);
 
-                if (result[w] !== -1) {
-                    available[result[w]] = true;
+        return log;
+    }
 
-                    //log
-                    log.push(new IterationLog(u, w, -1,
-                        [...result], [...available]));
-                }
-            }
+    solveCurrentVertex(u, colors, available, log, edges, queue) {
+        available.fill(false);
 
-            for (var i = 0; i < this.v; ++i) {
-                //log
-                log.push(new IterationLog(u, -1, i,
-                    [...result], [...available]));
+        addLogToArray(log, u, -1, -1, colors, available, edges, queue);
 
-                if (!available[i]) {
-                    break;
-                }
-            }
+        for (const w of this.adj[u]) {
+            addLogToArray(log, u, w, -1, colors, available, edges, queue);
 
-            result[u] = i;
+            if (colors[w] !== -1) {
+                available[colors[w]] = true;
 
-            //log
-            log.push(new IterationLog(u, -1, -1,
-                [...result], [...available]));
-
-            for (const w of this.adj[u]) {
-                if (result[w] !== -1) {
-                    available[result[w]] = false;
-                }
+                addLogToArray(log, u, w, -1, colors, available, edges, queue);
             }
         }
 
-        //log
-        log.push(new IterationLog(-1, -1, -1,
-            [...result], [...available]));
+        for (var i = 0; i < this.v && available[i]; ++i) {
+            addLogToArray(log, u, -1, i, colors, available, edges, queue);
+        }
 
-        //return result;
-        return log;
+        addLogToArray(log, u, -1, i, colors, available, edges, queue);
+
+        colors[u] = i;
+
+        addLogToArray(log, u, -1, -1, colors, available, edges, queue);
     }
 
     dfsColoring(s = 0) {
@@ -83,76 +84,43 @@ class Graph {
             length: this.v
         }, e => -1);
         var edges = new Set();
-
         var log = [];
+
+        addLogToArray(log, -1, -1, -1, colors);
 
         this.dfsColoringAux(s, visited, colors, edges, log);
 
         return log;
     }
 
-    dfsColoringAux(curVertice, visited, colors, edges, log) {
-        visited[curVertice] = true;
+    dfsColoringAux(curVertex, visited, colors, edges, log) {
+        visited[curVertex] = true;
 
         var available = Array.from({
             length: this.v
         }, e => false);
 
-        //log
-        log.push(new IterationLog(curVertice, -1, -1,
-            [...colors], [...available], [...edges]));
+        this.solveCurrentVertex(curVertex, colors, available, log, edges);
 
-        for (const w of this.adj[curVertice]) {
-            //log
-            log.push(new IterationLog(curVertice, w, -1,
-                [...colors], [...available], [...edges]));
-
-            if (colors[w] !== -1) {
-                available[colors[w]] = true;
-
-                //log
-                log.push(new IterationLog(curVertice, w, -1,
-                    [...colors], [...available], [...edges]));
-            }
-        }
-
-        for (var i = 0; i < this.v; ++i) {
-            //log
-            log.push(new IterationLog(curVertice, -1, i,
-                [...colors], [...available], [...edges]));
-
-            if (!available[i]) {
-                break;
-            }
-        }
-
-        colors[curVertice] = i;
-
-        //log
-        log.push(new IterationLog(curVertice, -1, -1,
-            [...colors], [...available], [...edges]));
-
-        for (const w of this.adj[curVertice]) {
+        for (const w of this.adj[curVertex]) {
             if (!visited[w]) {
 
-                edges.add(this.edgesToStr(curVertice, w));
+                edges.add(this.edgesToStr(curVertex, w));
 
-                //log
-                log.push(new IterationLog(curVertice, -1, -1,
-                    [...colors], [...available], [...edges]));
+                addLogToArray(log, curVertex, -1, -1, colors, available,
+                     edges);
 
                 this.dfsColoringAux(w, visited, colors, edges, log);
 
-                edges.delete(this.edgesToStr(curVertice, w));
+                edges.delete(this.edgesToStr(curVertex, w));
 
-                //log
-                log.push(new IterationLog(-1, -1, -1,
-                    [...colors], undefined, [...edges]));
+                addLogToArray(log, -1, -1, -1, colors, undefined,
+                    edges);
             }
         }
     }
 
-    bfsColoring(curVertice = 0) {
+    bfsColoring(s = 0) {
         var visited = Array.from({
             length: this.v
         }, e => false);
@@ -166,179 +134,188 @@ class Graph {
         var log = [];
         var queue = [];
 
-        visited[curVertice] = true;
-        queue.push(curVertice);
+        addLogToArray(log, -1, -1, -1, colors, available, undefined, queue);
 
-        //log
-        log.push(new IterationLog(-1, -1, -1,
-            [...colors], [...available], undefined, [...queue]));
+        var curVertex = s;
+        visited[curVertex] = true;
+        queue.push(curVertex);
+
+        addLogToArray(log, -1, -1, -1, colors, available, undefined, queue);
 
         while (queue.length > 0) {
-            curVertice = queue.shift();
+            curVertex = queue.shift();
 
-            //
+            this.solveCurrentVertex(curVertex, colors, available, log, 
+                undefined, queue);
 
-            //log
-            log.push(new IterationLog(curVertice, -1, -1,
-                [...colors], [...available], undefined, [...queue]));
-
-            for (const w of this.adj[curVertice]) {
-                //log
-                log.push(new IterationLog(curVertice, w, -1,
-                    [...colors], [...available], undefined, [...queue]));
-
-                if (colors[w] !== -1) {
-                    available[colors[w]] = true;
-
-                    //log
-                    log.push(new IterationLog(curVertice, w, -1,
-                        [...colors], [...available], undefined, [...queue]));
-                }
-            }
-
-            for (var i = 0; i < this.v; ++i) {
-                //log
-                log.push(new IterationLog(curVertice, -1, i,
-                    [...colors], [...available], undefined, [...queue]));
-
-                if (!available[i]) {
-                    break;
-                }
-            }
-
-            colors[curVertice] = i;
-
-            //log
-            log.push(new IterationLog(curVertice, -1, -1,
-                [...colors], [...available], undefined, [...queue]));
-
-            for (const w of this.adj[curVertice]) {
-                if (colors[w] !== -1) {
-                    available[colors[w]] = false;
-                }
-            }
-
-            //
-
-            for (const w of this.adj[curVertice]) {
-                //log
-                log.push(new IterationLog(curVertice, w, -1,
-                    [...colors], [...available], undefined, [...queue]));
+            for (const w of this.adj[curVertex]) {
+                addLogToArray(log, curVertex, w, -1, colors, available, 
+                    undefined, queue);
 
                 if (!visited[w]) {
                     visited[w] = true;
                     queue.push(w);
 
-                    //log
-                    log.push(new IterationLog(curVertice, -1, -1,
-                        [...colors], [...available], undefined, [...queue]));
+                    addLogToArray(log, curVertex, -1, -1, colors, available, 
+                        undefined, queue);
                 }
             }
         }
 
-        //log
-        log.push(new IterationLog(-1, -1, -1,
-            [...colors], [...available]));
+        addLogToArray(log, -1, -1, -1, colors, available);
 
         return log;
     }
 
-    backtrackingColoring() {
+    bruteForceColoring(maxV = this.v, maxC = this.v) {
         var colors = Array.from({
-            length: this.v
+            length: maxV
         }, e => -1);
 
         log = [];
 
-        if (this.backtrackingColoringAux(0, colors, log)) {
-            log.push(new IterationLog(-1, -1, -1, [...colors],
-                undefined, undefined, undefined));
-            return log;
-        }
-        return undefined;
-    }
+        addLogToArray(log, -1, -1, -1, colors);
 
-    backtrackingColoringAux(curVertice, colors, log) {
-        if (curVertice === this.v) {
-            return true;
-        }
-
-        log.push(new IterationLog(curVertice, -1, -1, [...colors],
-            undefined, undefined, undefined));
-
-        for (let i = 0; i < 5; ++i) {
-            log.push(new IterationLog(curVertice, -1, i, [...colors],
-                undefined, undefined, undefined));
-
-            if (this.isPossibleColor(curVertice, i, colors)) {
-                colors[curVertice] = i;
-
-                log.push(new IterationLog(curVertice, -1, -1, [...colors],
-                    undefined, undefined, undefined));
-
-                return this.backtrackingColoringAux(curVertice + 1, colors, log);
-            }
-        }
-        return false;
-    }
-
-    isPossibleColor(curVertice, color, colors) {
-        for (const w of this.adj[curVertice]) {
-            if (color === colors[w]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    bruteForceColoring() {
-        var colors = Array.from({
-            length: this.v
-        }, e => -1);
-
-        log = []
-
-        if (this.bruteForceColoringAux(0, colors, log)) {
-            log.push(new IterationLog(-1, -1, -1, [...colors],
-                undefined, undefined, undefined));
+        if (this.bruteForceColoringAux(0, maxV, maxC, colors, log)) {
+            addLogToArray(log, -1, -1, -1, colors);
             return log;
         }
 
         return undefined;
     }
 
-    bruteForceColoringAux(curVertice, colors, log) {
-        if (curVertice === 7) {
-            return this.isSafe(colors);
+    bruteForceColoringAux(curVertex, maxV, maxC, colors, log) {
+        if (curVertex === maxV) {
+            return this.isSafe(colors, maxV);
         }
 
-        log.push(new IterationLog(curVertice, -1, -1, [...colors],
+        log.push(new IterationLog(curVertex, -1, -1, [...colors],
             undefined, undefined, undefined));
 
-        for (let i = 0; i < 4; ++i) {
-            colors[curVertice] = i;
+        for (let i = 0; i < maxC; ++i) {
+            colors[curVertex] = i;
 
-            log.push(new IterationLog(curVertice, -1, -1, [...colors],
+            log.push(new IterationLog(curVertex, -1, -1, [...colors],
                 undefined, undefined, undefined));
 
-            if (this.bruteForceColoringAux(curVertice + 1, colors, log)) {
+            if (this.bruteForceColoringAux(curVertex + 1, maxV, maxC, 
+                colors, log)) {
                 return true;
             }
         }
         return false;
     }
 
-    //precisa verificar se ta -1? n ne
-    //mudar para isSolved
-    isSafe(colors) {
-        for (let u = 0; u < 7; ++u) {
+    isSafe(colors, maxV = this.v) {
+        for (let u = 0; u < maxV; ++u) {
             for (const w of this.adj[u]) {
-                if (colors[u] === colors[w]) {
-                    return false;
+                if (w < maxV) {
+                    if (colors[u] === colors[w]) {
+                        return false;
+                    } else if (colors[u] === -1 || colors[w] === -1) {
+                        return false;
+                    }
                 }
             }
         }
         return true;
+    }
+
+    bruteForceColoring2(s = 0, maxV = this.v, maxC = this.v) {
+        var colors = Array.from({
+            length: maxV
+        }, e => -1);
+        var visited = Array.from({
+            length: this.v
+        }, e => false);
+
+        log = [];
+
+        addLogToArray(log, -1, -1, -1, colors);
+
+        for (let i = 0; i < 4; ++i) {
+            colors[s] = i;
+            if (this.bruteForceColoringAux2(s, maxV, maxC, colors, visited, log)) {
+                addLogToArray(log, -1, -1, -1, colors);
+                return log;
+            }
+        }
+        return undefined;
+    }
+
+    bruteForceColoringAux2(curVertex, maxV, maxC, colors, visited, log) {
+        addLogToArray(log, curVertex, -1, -1, colors);
+
+        visited[curVertex] = true;
+
+        if (this.isSafe(colors, maxV)) {
+            return true;
+        }
+
+        for (let i = 0; i < maxC; ++i) {
+            for (const w of this.adj[curVertex]) {
+                if (!visited[w] && w < maxV) {
+                    colors[w] = i;
+                    if (this.bruteForceColoringAux2(w, maxV, maxC, colors, visited, log)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        visited[curVertex] = false;
+        return false;
+    }
+
+    welshPowell() {
+        var colors = Array.from({
+            length: this.v
+        }, e => -1);
+        log = [];
+
+        var verticesDegrees = this.calculateVerticesDegrees();
+        verticesDegrees.sort((a, b) => {
+            return b.degree - a.degree;
+        });
+
+        var colorCount = 0;
+        for (const elem of verticesDegrees) {
+            const curVertex = elem.vertex;
+            if (colors[curVertex] === -1) {
+                colors[curVertex] = colorCount;
+                for (const elem of verticesDegrees) {
+                    const w = elem.vertex;
+                    if (colors[w] === -1) {
+                        if (!this.hasAdjacentWithColor(w, colorCount, colors)) {
+                            colors[w] = colorCount;
+                        }
+                    }
+                }
+                ++colorCount;
+            }
+        }
+        addLogToArray(log, -1, -1, -1, colors);
+        return log;
+    }
+
+    calculateVerticesDegrees() {
+        var degrees = [];
+        this.adj.forEach((w, idx) => {
+            degrees.push({
+                vertex: idx,
+                degree: w.length
+            });
+        });
+        return degrees;
+    }
+
+    hasAdjacentWithColor(u, color, colors) {
+        for (const w of this.adj[u]) {
+            if (colors[w] === color) {
+                return true;
+            }
+        }
+        return false;
     }
 
     show() {
@@ -349,19 +326,27 @@ class Graph {
             }
         });
     }
-
-    edgesToStr = (u, v) => {
-        return Math.min(u, v) + '-' + Math.max(u, v);
-    }
 };
 
-var IterationLog = function (curVertice, curNeighbor, curAvailable, result,
+var IterationLog = function (curVertex, curNeighbor, curAvailable, colors,
     availableColors, statesEdges, queue) {
-    this.curVertice = curVertice;
+    this.curVertex = curVertex;
     this.curNeighbor = curNeighbor;
     this.curAvailable = curAvailable;
-    this.result = result;
+    this.colors = colors;
     this.availableColors = availableColors;
     this.statesEdges = statesEdges;
     this.queue = queue;
 }
+
+var addLogToArray = (logArray, curVertex, curNeighbor, curAvailable, colors,
+    availableColors, statesEdges, queue) => {
+    
+    var colorsCpy = (colors) ? [...colors] : undefined;
+    var avColorsCpy = (availableColors) ? [...availableColors] : undefined;
+    var statesEdgesCpy = (statesEdges) ? [...statesEdges] : undefined;
+    var queueCpy = (queue) ? [...queue] : undefined;
+
+    logArray.push(new IterationLog(curVertex, curNeighbor, curAvailable,
+        colorsCpy, avColorsCpy, statesEdgesCpy, queueCpy));
+};
