@@ -79,25 +79,29 @@
     background-color: white;
 }
 
-@media only screen and (max-width: 750px) {
-    body {
-        background-color: tomato;
+@media only screen and (max-width: 1430px) {
+    #buttons-player-container {
+        width: 100%;
+        margin-bottom: 30px;
     }
+}
 
+@media only screen and (max-width: 500px) {
     .btn-player {
         width: 60px;
     }
 
     #buttons-player-container {
         width: 100%;
+        margin-bottom: 30px;
     }
 
     #buttons-player-container input {
-        margin: 0px 1px 10px 0px;
+        margin: 1px;
     }
 
     #buttons-player-container button {
-        margin: 10px 1px 5px 1px;
+        margin: 0 1px 5px 1px;
         font-size: 12px;
     }
 }

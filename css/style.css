@@ -110,9 +110,47 @@ body {
     font: 20px Arial-BoldMT, sans-serif;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 1430px) {
     #svg1, #svg2 {
         width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px) and (max-height: 1000px) {
+    #svg1, #svg2 {
+        height: 400px;
+    }
+    body {
+        background-color: tomato;
+    }
+}
+
+@media only screen and (max-width: 500px) and (max-height: 940px) {
+    #svg1, #svg2 {
+        height: 350px;
+    }
+}
+
+@media only screen and (max-width: 500px) and (max-height: 840px) {
+    #svg1, #svg2 {
+        height: 320px;
+    }
+}
+
+@media only screen and (max-width: 500px) and (max-height: 770px) {
+    #svg1, #svg2 {
+        height: 290px;
+    }
+}
+
+@media only screen and (max-width: 500px) and (max-height: 710px) {
+    #svg1, #svg2 {
+        height: 240px;
+    }
+}
+
+@media only screen and (max-width: 500px) and (max-height: 600px) {
+    #svg1, #svg2 {
         height: auto;
     }
 }
