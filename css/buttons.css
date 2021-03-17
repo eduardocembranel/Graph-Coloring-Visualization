@@ -8,7 +8,7 @@
 }
 
 #buttons-player-container input, button {
-    margin: 0 1px;
+    margin: 3px 1px;
 }
 
 .btn-player {
@@ -101,7 +101,7 @@
     }
 
     #buttons-player-container button {
-        margin: 0 1px 5px 1px;
+        margin: 3px 1px 5px 1px;
         font-size: 12px;
     }
 }
