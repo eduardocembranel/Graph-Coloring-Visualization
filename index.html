@@ -3,14 +3,16 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Map Coloring Visualization</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/buttons.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="710" height="687"
-    viewBox="0 0 710 687">
+  <svg id="svg1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 710 687">
     <g id="svg-map">
       <a xlink:href="#">
         <path id="rs" d="M 328.00,585.00
@@ -1002,6 +1004,94 @@
       <line id="color5-line2" x1="30" y1="350" x2="90" y2="410" />
     </g>
 
+    <g id="svg-queue" transform="scale(0.77, 0.77) translate(600, 35)">
+      <text class="text-bold" id="svg" x="38" y="35">Fila</text>
+
+      <rect id="list0-box-degree" x="30" y="65" width="56" height="56" />
+      <rect id="list1-box-degree" x="30" y="121" width="56" height="56" />
+      <rect id="list2-box-degree" x="30" y="177" width="56" height="56" />
+      <rect id="list3-box-degree" x="30" y="233" width="56" height="56" />
+      <rect id="list4-box-degree" x="30" y="289" width="56" height="56" />
+      <rect id="list5-box-degree" x="30" y="345" width="56" height="56" />
+      <rect id="list6-box-degree" x="30" y="401" width="56" height="56" />
+      <rect id="list7-box-degree" x="30" y="457" width="56" height="56" />
+      <rect id="list8-box-degree" x="30" y="513" width="56" height="56" />
+      <rect id="list9-box-degree" x="30" y="569" width="56" height="56" />
+      <rect id="list10-box-degree" x="30" y="625" width="56" height="56" />
+      <rect id="list11-box-degree" x="30" y="681" width="56" height="56" />
+      <rect id="list12-box-degree" x="30" y="737" width="56" height="56" />
+      <rect id="list13-box-degree" x="30" y="793" width="56" height="56" />
+      <rect id="list14-box-degree" x="180" y="65" width="56" height="56" />
+      <rect id="list15-box-degree" x="180" y="121" width="56" height="56" />
+      <rect id="list16-box-degree" x="180" y="177" width="56" height="56" />
+      <rect id="list17-box-degree" x="180" y="233" width="56" height="56" />
+      <rect id="list18-box-degree" x="180" y="289" width="56" height="56" />
+      <rect id="list19-box-degree" x="180" y="345" width="56" height="56" />
+      <rect id="list20-box-degree" x="180" y="401" width="56" height="56" />
+      <rect id="list21-box-degree" x="180" y="457" width="56" height="56" />
+      <rect id="list22-box-degree" x="180" y="513" width="56" height="56" />
+      <rect id="list23-box-degree" x="180" y="569" width="56" height="56" />
+      <rect id="list24-box-degree" x="180" y="625" width="56" height="56" />
+      <rect id="list25-box-degree" x="180" y="681" width="56" height="56" />
+      <rect id="list26-box-degree" x="180" y="737" width="56" height="56" />
+      <rect id="list27-box-degree" x="180" y="793" width="56" height="56" />
+      <text id="list0-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 100)"></text>
+      <text id="list1-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 156)"></text>
+      <text id="list2-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 212)"></text>
+      <text id="list3-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 268)"></text>
+      <text id="list4-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 324)"></text>
+      <text id="list5-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 380)"></text>
+      <text id="list6-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 436)"></text>
+      <text id="list7-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 492)"></text>
+      <text id="list8-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 548)"></text>
+      <text id="list9-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 604)"></text>
+      <text id="list10-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 660)"></text>
+      <text id="list11-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 716)"></text>
+      <text id="list12-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 772)"></text>
+      <text id="list13-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 828)"></text>
+      <text id="list14-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 100)"></text>
+      <text id="list15-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 156)"></text>
+      <text id="list16-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 212)"></text>
+      <text id="list17-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 268)"></text>
+      <text id="list18-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 324)"></text>
+      <text id="list19-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 380)"></text>
+      <text id="list20-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 436)"></text>
+      <text id="list21-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 492)"></text>
+      <text id="list22-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 548)"></text>
+      <text id="list23-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 604)"></text>
+      <text id="list24-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 660)"></text>
+      <text id="list25-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 716)"></text>
+      <text id="list26-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 772)"></text>
+      <text id="list0-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 100)"></text>
+      <text id="list1-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 156)"></text>
+      <text id="list2-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 212)"></text>
+      <text id="list3-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 268)"></text>
+      <text id="list4-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 324)"></text>
+      <text id="list5-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 380)"></text>
+      <text id="list6-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 436)"></text>
+      <text id="list7-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 492)"></text>
+      <text id="list8-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 548)"></text>
+      <text id="list9-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 604)"></text>
+      <text id="list10-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 660)"></text>
+      <text id="list11-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 716)"></text>
+      <text id="list12-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 772)"></text>
+      <text id="list13-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 828)"></text>
+      <text id="list14-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 100)"></text>
+      <text id="list15-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 156)"></text>
+      <text id="list16-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 212)"></text>
+      <text id="list17-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 268)"></text>
+      <text id="list18-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 324)"></text>
+      <text id="list19-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 380)"></text>
+      <text id="list20-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 436)"></text>
+      <text id="list21-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 492)"></text>
+      <text id="list22-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 548)"></text>
+      <text id="list23-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 604)"></text>
+      <text id="list24-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 660)"></text>
+      <text id="list25-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 716)"></text>
+      <text id="list26-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 772)"></text>
+
+    </g>
+
     <g id="svg-queue" transform="scale(0.77, 0.77) translate(300, 35)">
       <text class="text-bold" id="svg" x="38" y="35">Fila</text>
       <rect x="30" y="65" width="60" height="60" />
@@ -1048,12 +1138,14 @@
 
   <br><br><br>
 
-  <input style="margin-left: 200px;" id="anim-speed" type="range" value="teste" min="10" max="2000">
-  <button id="skip-back" type="button">Voltar ao início</button>
-  <button id="step-back" type="button">Voltar</button>
-  <button id="play-pause" type="button">Play</button>
-  <button id="step-forward" type="button">Avançar</button>
-  <button id="skip-forward" type="button">Avançar para o fim</button>
+  <div id="buttons-player-container">
+    <button class="btn-player" id="skip-back" type="button" title="Voltar ao início"> <i class="fa fa-backward"></i> </button>
+    <button class="btn-player" id="step-back" type="button" title="Voltar um passo"> <i class="fa fa-chevron-left"></i> </button>
+    <button class="btn-player" id="play-pause" type="button" title="play/pause"> <i class="fa fa-play"></i> </button>
+    <button class="btn-player" id="step-forward" type="button" title="Avançar um passo"> <i class="fa fa-chevron-right"></i> </button>
+    <button class="btn-player" id="skip-forward" type="button" title="Avançar para o fim"> <i class="fa fa-forward"></i> </button>
+    <input class="slider" id="anim-speed" type="range" min="10" max="2000" title="Velocidade da animação">
+  </div>
 
   <script src="js/graph.js"></script>
   <script src="js/uiManager.js"></script>

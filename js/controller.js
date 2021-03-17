@@ -52,12 +52,13 @@ g.addEdge(24, 25);
 g.addEdge(25, 26);
 
 //var log = g.greedyColoring(); //mudar o nome da funcao
-var log = g.dfsColoring(5); //ta ok
+//var log = g.dfsColoring(5); //ta ok
 //var log = g.bfsColoring(18); //ta ok
-//var log = g.bruteForceColoring(9, 4); //mostrar o contorno do subgrafo
-//var log = g.bruteForceColoring2(0, 8, 4);
-//var log = g.welshPowell();
-
+var log = g.bruteForceColoring(7, 4); //mostrar o contorno do subgrafo
+var log = g.bruteForceColoring2(0, 8, 4);
+//var log = g.dfsColoringWithHeuristic();
+//var log = g.bfsColoringWithHeuristic();
+var log = g.welshPowell();
 
 var animManager = new AnimManager(log);
 

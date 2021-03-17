@@ -1,3 +1,29 @@
+
+/*
+svg {
+    width: 30%; height: auto;
+    margin: auto;
+}
+*/
+
+/*
+#teste {
+    width: 100%;
+    text-align: center;
+}
+*/
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #eeeeee;
+}
+
+#svg1 {
+    width: 710px;
+    height: 687px;    
+}
+
 #svg-map path {
     fill: #888888;
     stroke: #ffffff;

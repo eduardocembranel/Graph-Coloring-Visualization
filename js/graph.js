@@ -1,18 +1,9 @@
 class Graph {
     constructor(v) {
         this.v = v;
-
-        //adjacency list
         this.adj = Array.from({
             length: v
         }, e => []);
-        
-        //adjacency matrix
-        this.mat = Array.from({
-            length: v
-        }, e => Array.from({
-            length: v
-        }, e => 0));
     }
 
     addVertex() {
@@ -23,7 +14,6 @@ class Graph {
     addEdge(u, w) {
         this.adj[u].push(w);
         this.adj[w].push(u);
-        this.mat[u][w] = this.mat[w][u] = 1;
     }
 
     edgesToStr = (u, v) => {
@@ -120,6 +110,38 @@ class Graph {
         }
     }
 
+    dfsColoringWithHeuristic() {
+        var visited = Array.from({
+            length: this.v
+        }, e => false);
+        var colors = Array.from({
+            length: this.v
+        }, e => -1);
+        var edges = new Set();
+        var log = [];
+
+        addLogToArray(log, -1, -1, -1, colors);
+
+        const clone = JSON.parse(JSON.stringify(this.adj));
+
+        var verticesDegrees = this.calculateVerticesDegrees();
+        for (const w of this.adj) {
+            w.sort((a, b) => {
+                return verticesDegrees[b].degree - verticesDegrees[a].degree;
+            })
+        }
+        verticesDegrees.sort((a, b) => {
+            return b.degree - a.degree;
+        });
+
+        this.dfsColoringAux(verticesDegrees[0].vertex, 
+            visited, colors, edges, log);
+
+        this.adj = clone;
+
+        return log;
+    }
+
     bfsColoring(s = 0) {
         var visited = Array.from({
             length: this.v
@@ -162,7 +184,68 @@ class Graph {
             }
         }
 
-        addLogToArray(log, -1, -1, -1, colors, available);
+        addLogToArray(log, -1, -1, -1, colors);
+
+        return log;
+    }
+
+    bfsColoringWithHeuristic() {
+        var visited = Array.from({
+            length: this.v
+        }, e => false);
+        var colors = Array.from({
+            length: this.v
+        }, e => -1);
+        var available = Array.from({
+            length: this.v
+        }, e => false);
+
+        var log = [];
+        var queue = [];
+
+        addLogToArray(log, -1, -1, -1, colors, available, undefined, queue);
+
+        const clone = JSON.parse(JSON.stringify(this.adj));
+
+        var verticesDegrees = this.calculateVerticesDegrees();
+        for (const w of this.adj) {
+            w.sort((a, b) => {
+                return verticesDegrees[b].degree - verticesDegrees[a].degree;
+            })
+        }
+        verticesDegrees.sort((a, b) => {
+            return b.degree - a.degree;
+        });
+
+        var curVertex = verticesDegrees[0].vertex;
+        visited[curVertex] = true;
+        queue.push(curVertex);
+
+        addLogToArray(log, -1, -1, -1, colors, available, undefined, queue);
+
+        while (queue.length > 0) {
+            curVertex = queue.shift();
+
+            this.solveCurrentVertex(curVertex, colors, available, log, 
+                undefined, queue);
+
+            for (const w of this.adj[curVertex]) {
+                addLogToArray(log, curVertex, w, -1, colors, available, 
+                    undefined, queue);
+
+                if (!visited[w]) {
+                    visited[w] = true;
+                    queue.push(w);
+
+                    addLogToArray(log, curVertex, -1, -1, colors, available, 
+                        undefined, queue);
+                }
+            }
+        }
+
+        addLogToArray(log, -1, -1, -1, colors);
+
+        this.adj = clone;
 
         return log;
     }
@@ -189,14 +272,12 @@ class Graph {
             return this.isSafe(colors, maxV);
         }
 
-        log.push(new IterationLog(curVertex, -1, -1, [...colors],
-            undefined, undefined, undefined));
+        log.push(new IterationLog(curVertex, -1, -1, [...colors]));
 
         for (let i = 0; i < maxC; ++i) {
             colors[curVertex] = i;
 
-            log.push(new IterationLog(curVertex, -1, -1, [...colors],
-                undefined, undefined, undefined));
+            log.push(new IterationLog(curVertex, -1, -1, [...colors]));
 
             if (this.bruteForceColoringAux(curVertex + 1, maxV, maxC, 
                 colors, log)) {
@@ -273,28 +354,54 @@ class Graph {
         }, e => -1);
         log = [];
 
+        addLogToArray(log, -1, -1, -1, colors);
+
         var verticesDegrees = this.calculateVerticesDegrees();
+
+        addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
+            undefined, verticesDegrees);
+
         verticesDegrees.sort((a, b) => {
             return b.degree - a.degree;
         });
 
+        addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
+            undefined, verticesDegrees);
+  
         var colorCount = 0;
-        for (const elem of verticesDegrees) {
-            const curVertex = elem.vertex;
+        for (let i = 0; i < verticesDegrees.length; ++i) {
+            const curVertex = verticesDegrees[i].vertex;
+
+            addLogToArray(log, curVertex, -1, colorCount, colors, undefined,
+                undefined, undefined, verticesDegrees, i, -1);
+
             if (colors[curVertex] === -1) {
                 colors[curVertex] = colorCount;
-                for (const elem of verticesDegrees) {
-                    const w = elem.vertex;
+                
+                addLogToArray(log, curVertex, -1, colorCount, colors,
+                    undefined, undefined, undefined, verticesDegrees, i, -1);
+
+                for (let j = i + 1; j < verticesDegrees.length; ++j) {
+                    const w = verticesDegrees[j].vertex;
+
                     if (colors[w] === -1) {
+                        addLogToArray(log, curVertex, w, colorCount, colors,
+                            undefined, undefined, undefined, verticesDegrees, i, j);
+                        
                         if (!this.hasAdjacentWithColor(w, colorCount, colors)) {
                             colors[w] = colorCount;
+
+                            addLogToArray(log, curVertex, w, colorCount, colors,
+                                undefined, undefined, undefined, verticesDegrees, i, j);
                         }
                     }
                 }
                 ++colorCount;
             }
         }
-        addLogToArray(log, -1, -1, -1, colors);
+
+        addLogToArray(log, -1, -1, -1, colors, undefined, undefined, undefined, 
+            verticesDegrees);
         return log;
     }
 
@@ -329,7 +436,7 @@ class Graph {
 };
 
 var IterationLog = function (curVertex, curNeighbor, curAvailable, colors,
-    availableColors, statesEdges, queue) {
+    availableColors, statesEdges, queue, listDegrees, curList, neighborList) {
     this.curVertex = curVertex;
     this.curNeighbor = curNeighbor;
     this.curAvailable = curAvailable;
@@ -337,16 +444,21 @@ var IterationLog = function (curVertex, curNeighbor, curAvailable, colors,
     this.availableColors = availableColors;
     this.statesEdges = statesEdges;
     this.queue = queue;
+    this.listDegrees = listDegrees;
+    this.curList = curList;
+    this.neighborList = neighborList;
 }
 
 var addLogToArray = (logArray, curVertex, curNeighbor, curAvailable, colors,
-    availableColors, statesEdges, queue) => {
+    availableColors, statesEdges, queue, listDegrees, curList, neighborList) => {
     
     var colorsCpy = (colors) ? [...colors] : undefined;
     var avColorsCpy = (availableColors) ? [...availableColors] : undefined;
     var statesEdgesCpy = (statesEdges) ? [...statesEdges] : undefined;
     var queueCpy = (queue) ? [...queue] : undefined;
+    var listDegreesCpy = (listDegrees) ? [...listDegrees] : undefined;
 
     logArray.push(new IterationLog(curVertex, curNeighbor, curAvailable,
-        colorsCpy, avColorsCpy, statesEdgesCpy, queueCpy));
+        colorsCpy, avColorsCpy, statesEdgesCpy, queueCpy, listDegreesCpy,
+        curList, neighborList));
 };

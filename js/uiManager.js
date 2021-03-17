@@ -249,4 +249,89 @@ var uiManager = new function () {
             this.setStateColor(stateIdx, color);
         });
     };
+
+    this.listBoxesDegree = (function() {
+        var listBoxesDegree = [];
+        for (let i = 0; i < 27; ++i) {
+            var elemId = `list${i}-box-degree`;
+            listBoxesDegree.push(document.getElementById(elemId));
+        }
+        return listBoxesDegree;
+    })();
+
+    this.listLabelsDegree = (function() {
+        var listLabelsDegree = [];
+        for (let i = 0; i < 27; ++i) {
+            var elemId = `list${i}-label-degree`;
+            listLabelsDegree.push(document.getElementById(elemId));
+        }
+        return listLabelsDegree;
+    })();
+
+    this.listDegrees = (function() {
+        var listDegrees = [];
+        for (let i = 0; i < 27; ++i) {
+            var elemId = `list${i}-degree`;
+            listDegrees.push(document.getElementById(elemId));
+        }
+        return listDegrees;
+    })();
+
+    this.setListDegree = (listIdx, degree) => {
+        let s = (degree !== -1) ? degree : '';
+        this.listDegrees[listIdx].innerHTML = s;
+    }
+
+    this.setListLabelDegree = (listIdx, stateIdx) => {
+        let s = (stateIdx !== -1) ? this.stateAcronyms[stateIdx].toUpperCase() : '';
+        this.listLabelsDegree[listIdx].innerHTML = s;
+    }
+
+    this.setListBoxDegree = (listIdx, mode) => {
+        if (mode === 'normal') {
+            this.listBoxesDegree[listIdx].style.stroke = '#000000';
+            this.listBoxesDegree[listIdx].style.strokeWidth = 2.0;
+        } else if (mode === 'highlight') {
+            this.listBoxesDegree[listIdx].style.stroke = '#00ff00';
+            this.listBoxesDegree[listIdx].style.strokeWidth = 6.0;
+        } else if (mode === 'highlight2') {
+            this.listBoxesDegree[listIdx].style.stroke = '#0000ff';
+            this.listBoxesDegree[listIdx].style.strokeWidth = 6.0;
+        }
+    }
+
+    this.setAllListBoxesDegree = (curListIdx, neighborListIdx) => {
+        for (let i = 0; i < 27; ++i) {
+            if (i === curListIdx) {
+                this.setListBoxDegree(i, 'highlight');
+            } else if (i === neighborListIdx) {
+                this.setListBoxDegree(i, 'highlight2');
+            } else {
+                this.setListBoxDegree(i, 'normal');
+            }
+        }
+    }
+
+    this.setAllListDegreesAndLabels = (list) => {
+        for (let i = 0; i < 27; ++i) {
+            if (!list) {
+                this.setListDegree(i, -1);
+                this.setListLabelDegree(i, -1);
+            } else {
+                this.setListDegree(i, list[i].degree);
+                this.setListLabelDegree(i, list[i].vertex);
+            }
+        }
+    };
+
+    this.setAllListDegrees = (list) => {
+        for (let i = 0; i < 27; ++i) {
+            if (!list) {
+                this.setListDegree(i, -1);
+            } else {
+                this.setListDegree(i, list[i].degree);
+            }
+        }
+    };
+
 };

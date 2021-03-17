@@ -43,6 +43,8 @@ var AnimManager = function (log) {
         uiManager.setAllStatesBorders(log.curVertex, log.curNeighbor);
         uiManager.setAllStatesEdges(log.statesEdges);
         uiManager.setAllQueueStates(log.queue);
+        uiManager.setAllListDegreesAndLabels(log.listDegrees);
+        uiManager.setAllListBoxesDegree(log.curList, log.neighborList);
     };
 
     this.pause = () => {
