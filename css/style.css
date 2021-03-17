@@ -104,3 +104,10 @@ body {
     fill: #000000;
     font: 20px Arial-BoldMT, sans-serif;
 }
+
+@media only screen and (max-width: 750px) {
+    #svg1 {
+        width: 100%;
+        height: auto;
+    }
+}
