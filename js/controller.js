@@ -63,6 +63,10 @@ var log = g.welshPowell();
 var animManager = new AnimManager(log);
 
 uiManager.buttons.get('play-pause').onclick = (e) => {
+    var x = window.devicePixelRatio;
+    var y = window.innerWidth;
+    alert(x + ' ' + y);
+    alert(y);
     if (uiManager.isPlayButton()) {
         animManager.resetIfEnded();
         uiManager.setButtonsPlayMode(true);
