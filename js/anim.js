@@ -1,14 +1,15 @@
 var AnimManager = function (log) {
     this.running = false;
-    this.animDelay = 2010 - $('#anim-speed').val();
+    this.animDelay = 2010 - uiManager.getAnimSpeed();
     this.log = log;
     this.logIdx = 0;
 
     this.delay = () => {
         return new Promise((resolve, reject) => {
-            $('#anim-speed').on('cancelPromise', (e) => {
+            uiManager.buttons.get('anim-speed').addEventListener(
+            'cancelPromise', (e) => {
                 resolve(e.detail);
-            });
+            }, false);
             setTimeout(() => resolve(), this.animDelay);
         });
     };
@@ -69,7 +70,7 @@ var AnimManager = function (log) {
     };
 
     this.changeSpeed = () => {
-        this.animDelay = 2010 - $('#anim-speed').val();
+        this.animDelay = 2010 - uiManager.getAnimSpeed();
     };
 
     this.skipBack = () => {

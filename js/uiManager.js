@@ -105,6 +105,10 @@ var uiManager = new function () {
         return buttons;
     })();
 
+    this.getAnimSpeed = () => {
+        return this.buttons.get('anim-speed').value;
+    }
+
     this.disableStepButtons = (disable) => {
         if (disable) {
             this.buttons.get('step-back').classList.add("disabled-button");

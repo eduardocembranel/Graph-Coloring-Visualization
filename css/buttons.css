@@ -10,10 +10,10 @@
 #buttons-player-container input,
 button {
     margin: 3px 1px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .btn-player {
-    -webkit-tap-highlight-color: transparent;
     padding: 7px;
     background-color: #33322f;
     color: #b7b7b7;
