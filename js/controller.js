@@ -106,3 +106,11 @@ uiManager.buttons.get('anim-speed').onclick = (e) => {
         animManager.changeSpeed();
     }
 };
+
+uiManager.buttons.get('anim-speed').addEventListener('touchend', (e) => {
+    if (animManager.running) {
+        animManager.cancelPromise('changeSpeed');
+    } else {
+        animManager.changeSpeed();
+    }
+}, false);
