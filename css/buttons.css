@@ -17,7 +17,7 @@ button {
     background-color: #33322f;
     color: #b7b7b7;
     width: 77px;
-    font-size: 18px;
+    font-size: 1.8vh;
     border-radius: 8px;
     border: 3px solid #33322f;
     text-decoration: none;
@@ -87,9 +87,7 @@ button {
 
 @media only screen and (max-width: 1430px) {
     #buttons-player-container {
-        height: 5vh;
         width: 100%;
-        margin-bottom: 30px;
     }
 }
 
@@ -104,6 +102,6 @@ button {
 
     #buttons-player-container button {
         margin: 3px 1px 5px 1px;
-        font-size: 12px;
+        font-size: 1.5vh;
     }
 }
