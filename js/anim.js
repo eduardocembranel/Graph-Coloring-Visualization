@@ -1,6 +1,6 @@
 var AnimManager = function (log) {
     this.running = false;
-    this.animDelay = 1000;
+    this.animDelay = 2010 - $('#anim-speed').val();
     this.log = log;
     this.logIdx = 0;
 

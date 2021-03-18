@@ -107,22 +107,29 @@ var uiManager = new function () {
 
     this.disableStepButtons = (disable) => {
         if (disable) {
-            this.buttons.get('step-back').disabled = true;
-            this.buttons.get('step-forward').disabled = true;
+            this.buttons.get('step-back').classList.add("disabled-button");
+            this.buttons.get('step-forward').classList.add("disabled-button");
         } else {
-            this.buttons.get('step-back').disabled = false;
-            this.buttons.get('step-forward').disabled = false;
+            this.buttons.get('step-back').classList.remove("disabled-button");
+            this.buttons.get('step-forward').classList.remove("disabled-button");
         }
     };
 
     this.setButtonsPlayMode = (playMode) => {
         if (playMode) {
-            this.buttons.get('play-pause').innerHTML = 'Pausar';
+            this.buttons.get('play-pause').innerHTML = 
+                '<i class="fa fa-pause"></i>';
             this.disableStepButtons(true);
         } else {
-            this.buttons.get('play-pause').innerHTML = 'Play';
+            this.buttons.get('play-pause').innerHTML = 
+                '<i class="fa fa-play"></i>';
             this.disableStepButtons(false);
         }
+    }
+
+    this.isPlayButton = () => {
+        return this.buttons.get('play-pause').innerHTML === 
+            '<i class="fa fa-play"></i>';
     }
 
     this.queueTexts = (function () {

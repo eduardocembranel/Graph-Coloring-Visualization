@@ -63,7 +63,7 @@ var log = g.welshPowell();
 var animManager = new AnimManager(log);
 
 uiManager.buttons.get('play-pause').onclick = (e) => {
-    if (uiManager.buttons.get('play-pause').innerHTML === 'Play') {
+    if (uiManager.isPlayButton()) {
         uiManager.setButtonsPlayMode(true);
         animManager.beginAnim().then(() => {
             uiManager.setButtonsPlayMode(false);
