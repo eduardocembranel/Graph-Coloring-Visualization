@@ -10,6 +10,7 @@
 #buttons-player-container input,
 button {
     margin: 3px 1px;
+    -webkit-appearance: none;
 }
 
 .btn-player {
@@ -42,7 +43,6 @@ button {
 }
 
 .slider {
-    -webkit-appearance: none;
     width: 300px;
     height: 25px;
     background-color: #33322f;
