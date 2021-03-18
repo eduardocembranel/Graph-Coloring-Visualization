@@ -7,7 +7,8 @@
     width: 710px;
 }
 
-#buttons-player-container input, button {
+#buttons-player-container input,
+button {
     margin: 3px 1px;
 }
 
@@ -86,6 +87,7 @@
 
 @media only screen and (max-width: 1430px) {
     #buttons-player-container {
+        height: 5vh;
         width: 100%;
         margin-bottom: 30px;
     }
@@ -94,11 +96,6 @@
 @media only screen and (max-width: 500px) {
     .btn-player {
         width: 60px;
-    }
-
-    #buttons-player-container {
-        width: 100%;
-        margin-bottom: 30px;
     }
 
     #buttons-player-container input {
