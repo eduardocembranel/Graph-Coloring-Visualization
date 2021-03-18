@@ -32,6 +32,9 @@ var AnimManager = function (log) {
             this.animByIdx();
         }
         this.running = false;
+        if (this.logIdx === this.log.length) {
+            this.logIdx = Math.max(0, this.logIdx - 1);
+        }
     };
 
     this.animByIdx = () => {
@@ -46,6 +49,20 @@ var AnimManager = function (log) {
         uiManager.setAllListDegreesAndLabels(log.listDegrees);
         uiManager.setAllListBoxesDegree(log.curList, log.neighborList);
     };
+
+    this.isEndAnim = () => {
+        return this.logIdx >= this.log.length - 1;
+    }
+
+    this.resetAnim = () => {
+        this.logIdx = 0;
+    }
+
+    this.resetIfEnded = () => {
+        if (this.isEndAnim()) {
+            this.resetAnim();
+        }
+    }
 
     this.pause = () => {
         this.running = false;

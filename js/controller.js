@@ -64,6 +64,7 @@ var animManager = new AnimManager(log);
 
 uiManager.buttons.get('play-pause').onclick = (e) => {
     if (uiManager.isPlayButton()) {
+        animManager.resetIfEnded();
         uiManager.setButtonsPlayMode(true);
         animManager.beginAnim().then(() => {
             uiManager.setButtonsPlayMode(false);
@@ -75,8 +76,6 @@ uiManager.buttons.get('play-pause').onclick = (e) => {
 };
 
 uiManager.buttons.get('skip-forward').onclick = (e) => {
-    uiManager.setButtonsPlayMode(false);
-
     if (animManager.running) {
         animManager.cancelPromise('skipForward');
     } else {
@@ -86,10 +85,8 @@ uiManager.buttons.get('skip-forward').onclick = (e) => {
 
 uiManager.buttons.get('skip-back').onclick = (e) => {
     if (animManager.running) {
-        uiManager.setButtonsPlayMode(true);
         animManager.cancelPromise('skipBack');
     } else {
-        uiManager.setButtonsPlayMode(false);
         animManager.skipBack();
     }
 };
