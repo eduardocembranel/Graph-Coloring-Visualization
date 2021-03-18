@@ -20,7 +20,7 @@ class Graph {
         return Math.min(u, v) + '-' + Math.max(u, v);
     }
 
-    greedyColoring() {
+    basicSearchColoring() {
         var colors = Array.from({
             length: this.v
         }, e => -1);
@@ -125,6 +125,10 @@ class Graph {
         const clone = JSON.parse(JSON.stringify(this.adj));
 
         var verticesDegrees = this.calculateVerticesDegrees();
+
+        addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
+            undefined, verticesDegrees);
+
         for (const w of this.adj) {
             w.sort((a, b) => {
                 return verticesDegrees[b].degree - verticesDegrees[a].degree;
@@ -134,8 +138,15 @@ class Graph {
             return b.degree - a.degree;
         });
 
+        addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
+            undefined, verticesDegrees);
+
         this.dfsColoringAux(verticesDegrees[0].vertex, 
             visited, colors, edges, log);
+
+        for (let i = 3; i < log.length; ++i) {
+            log[i].listDegrees = verticesDegrees;
+        }
 
         this.adj = clone;
 
@@ -203,11 +214,15 @@ class Graph {
         var log = [];
         var queue = [];
 
-        addLogToArray(log, -1, -1, -1, colors, available, undefined, queue);
+        addLogToArray(log, -1, -1, -1, colors);
 
         const clone = JSON.parse(JSON.stringify(this.adj));
 
         var verticesDegrees = this.calculateVerticesDegrees();
+
+        addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
+            undefined, verticesDegrees);
+
         for (const w of this.adj) {
             w.sort((a, b) => {
                 return verticesDegrees[b].degree - verticesDegrees[a].degree;
@@ -216,6 +231,9 @@ class Graph {
         verticesDegrees.sort((a, b) => {
             return b.degree - a.degree;
         });
+
+        addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
+            undefined, verticesDegrees);
 
         var curVertex = verticesDegrees[0].vertex;
         visited[curVertex] = true;
@@ -244,6 +262,10 @@ class Graph {
         }
 
         addLogToArray(log, -1, -1, -1, colors);
+
+        for (let i = 3; i < log.length; ++i) {
+            log[i].listDegrees = verticesDegrees;
+        }
 
         this.adj = clone;
 
