@@ -52,10 +52,10 @@ g.addEdge(24, 25);
 g.addEdge(25, 26);
 
 //var log = g.basicSearchColoring(); //ok
-var log = g.dfsColoring(5); //ok
+//var log = g.dfsColoring(5); //ok
 //var log = g.bfsColoring(18); //ok
 //var log = g.bruteForceColoring(7, 4); //mostrar o contorno do subgrafo
-//var log = g.bruteForceColoring2(0, 8, 4); //mostrar o contorno
+var log = g.bruteForceColoring2(0, 8, 4); //mostrar o contorno
 //var log = g.dfsColoringWithHeuristic(); //ok
 //var log = g.bfsColoringWithHeuristic(); //ok
 //var log = g.welshPowell(); //ok

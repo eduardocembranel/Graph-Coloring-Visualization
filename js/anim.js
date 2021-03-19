@@ -44,7 +44,7 @@ var AnimManager = function (log) {
         uiManager.setAllStatesColors(log.colors);
         uiManager.setAllColorsLines(log.availableColors);
         uiManager.setAllBoxesBorders(log.curAvailable);
-        uiManager.setAllStatesBorders(log.curVertex, log.curNeighbor);
+        uiManager.setAllStatesBorders(log.curVertex, log.curNeighbor, log.subgraphSize);
         uiManager.setAllStatesEdges(log.statesEdges);
         uiManager.setAllQueueStates(log.queue);
         uiManager.setAllListDegreesAndLabels(log.listDegrees);

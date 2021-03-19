@@ -195,18 +195,23 @@ var uiManager = new function () {
         } else if (mode === 'highlight2') {
             this.states[stateIdx].style.stroke = '#0000bb';
             this.states[stateIdx].style.strokeWidth = 7.0;
+        } else if (mode === 'highlight3') {
+            this.states[stateIdx].style.stroke = '#4a4949';
+            this.states[stateIdx].style.strokeWidth = 6.0;
         } else if (mode === 'normal') {
             this.states[stateIdx].style.stroke = '#ffffff';
             this.states[stateIdx].style.strokeWidth = 1.0;
         }
     };
 
-    this.setAllStatesBorders = (curVertex, curNeighbor) => {
+    this.setAllStatesBorders = (curVertex, curNeighbor, subgraphSize) => {
         for (let i = 0; i < 27; ++i) {
             if (i === curVertex) {
                 this.setStateBorder(i, 'highlight');
             } else if (i === curNeighbor) {
                 this.setStateBorder(i, 'highlight2');
+            } else if (subgraphSize && i < subgraphSize) {
+                this.setStateBorder(i, 'highlight3');
             } else {
                 this.setStateBorder(i, 'normal');
             }
