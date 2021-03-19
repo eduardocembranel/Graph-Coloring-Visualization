@@ -204,14 +204,12 @@ var uiManager = new function () {
         }
     };
 
-    this.setAllStatesBorders = (curVertex, curNeighbor, subgraphSize) => {
+    this.setAllStatesBorders = (curVertex, curNeighbor) => {
         for (let i = 0; i < 27; ++i) {
             if (i === curVertex) {
                 this.setStateBorder(i, 'highlight');
             } else if (i === curNeighbor) {
                 this.setStateBorder(i, 'highlight2');
-            } else if (subgraphSize && i < subgraphSize) {
-                this.setStateBorder(i, 'highlight3');
             } else {
                 this.setStateBorder(i, 'normal');
             }
@@ -265,6 +263,20 @@ var uiManager = new function () {
             this.setStateColor(stateIdx, color);
         });
     };
+
+    this.setStateOpacity = (stateIdx, opacity) => {
+        this.states[stateIdx].style.opacity = opacity;
+    }
+
+    this.setAllStateOpacity = (subgraphSize) => {
+        for (let i = 0; i < 27; ++i) {
+            if (!subgraphSize || i < subgraphSize) {
+                this.setStateOpacity(i, 1.0)
+            } else {
+                this.setStateOpacity(i, 0.3);
+            }
+        }
+    }
 
     this.listBoxesDegree = (function() {
         var listBoxesDegree = [];
