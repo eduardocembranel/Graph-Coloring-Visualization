@@ -28,7 +28,7 @@ button {
     outline: none;
 }
 
-.disabled-button {
+.disabled-btn {
     pointer-events: none;
     opacity: 0.6;
 }

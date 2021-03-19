@@ -102,32 +102,92 @@ var uiManager = new function () {
         buttons.set('step-back', document.getElementById('step-back'));
         buttons.set('step-forward', document.getElementById('step-forward'));
         buttons.set('anim-speed', document.getElementById('anim-speed'));
+        buttons.set('select-algorithm', 
+            document.getElementById('select-algorithm-btn'));
+        buttons.set('select-start', 
+            document.getElementById('select-start-btn'));
+        buttons.set('select-n', 
+            document.getElementById('select-n-btn'));
         return buttons;
     })();
 
     this.getAnimSpeed = () => {
         return this.buttons.get('anim-speed').value;
-    }
+    };
 
-    this.disableStepButtons = (disable) => {
+    this.disableButtons = (disable) => {
         if (disable) {
-            this.buttons.get('step-back').classList.add("disabled-button");
-            this.buttons.get('step-forward').classList.add("disabled-button");
+            this.buttons.get('step-back').classList.add("disabled-btn");
+            this.buttons.get('step-forward').classList.add("disabled-btn");
+            this.buttons.get('select-algorithm').classList.add("disabled-btn");
+            this.buttons.get('select-start').classList.add("disabled-btn");
+            this.buttons.get('select-n').classList.add("disabled-btn");
         } else {
-            this.buttons.get('step-back').classList.remove("disabled-button");
-            this.buttons.get('step-forward').classList.remove("disabled-button");
+            this.buttons.get('step-back').classList.remove("disabled-btn");
+            this.buttons.get('step-forward').classList.remove("disabled-btn");
+            this.buttons.get('select-algorithm').classList.remove("disabled-btn");
+            this.buttons.get('select-start').classList.remove("disabled-btn");
+            this.buttons.get('select-n').classList.remove("disabled-btn");
         }
+    };
+
+    this.hideButton = (btnName, disable = true) => {
+        if (disable) {
+            this.buttons.get(btnName).style.display = 'none';
+        } else {
+            this.buttons.get(btnName).style.disable = 'inline';
+        }
+    };
+
+    this.setModeAlg1 = () => {
+        this.hideButton('select-start');
+        this.hideButton('select-n');
+    };
+
+    this.setModeAlg2 = () => {
+        this.hideButton('select-start', false);
+        this.hideButton('select-n');
+    };
+
+    this.setModeAlg3 = () => {
+        this.hideButton('select-start', false);
+        this.hideButton('select-n');
+    };
+
+    this.setModeAlg4 = () => {
+        this.hideButton('select-start');
+        this.hideButton('select-n');
+    };
+
+    this.setModeAlg5 = () => {
+        this.hideButton('select-start');
+        this.hideButton('select-n');
+    };
+
+    this.setModeAlg6 = () => {
+        this.hideButton('select-start');
+        this.hideButton('select-n');
+    };
+
+    this.setModeAlg7 = () => {
+        this.hideButton('select-start');
+        this.hideButton('select-n', false);
+    };
+
+    this.setModeAlg8 = () => {
+        this.hideButton('select-start', false);
+        this.hideButton('select-n', false);
     };
 
     this.setButtonsPlayMode = (playMode) => {
         if (playMode) {
             this.buttons.get('play-pause').innerHTML = 
                 '<i class="fa fa-pause"></i>';
-            this.disableStepButtons(true);
+            this.disableButtons(true);
         } else {
             this.buttons.get('play-pause').innerHTML = 
                 '<i class="fa fa-play"></i>';
-            this.disableStepButtons(false);
+            this.disableButtons(false);
         }
     }
 
@@ -308,12 +368,12 @@ var uiManager = new function () {
     this.setListDegree = (listIdx, degree) => {
         let s = (degree !== -1) ? degree : '';
         this.listDegrees[listIdx].innerHTML = s;
-    }
+    };
 
     this.setListLabelDegree = (listIdx, stateIdx) => {
         let s = (stateIdx !== -1) ? this.stateAcronyms[stateIdx].toUpperCase() : '';
         this.listLabelsDegree[listIdx].innerHTML = s;
-    }
+    };
 
     this.setListBoxDegree = (listIdx, mode) => {
         if (mode === 'normal') {
@@ -326,7 +386,7 @@ var uiManager = new function () {
             this.listBoxesDegree[listIdx].style.stroke = '#0000ff';
             this.listBoxesDegree[listIdx].style.strokeWidth = 6.0;
         }
-    }
+    };
 
     this.setAllListBoxesDegree = (curListIdx, neighborListIdx) => {
         for (let i = 0; i < 27; ++i) {
@@ -338,7 +398,7 @@ var uiManager = new function () {
                 this.setListBoxDegree(i, 'normal');
             }
         }
-    }
+    };
 
     this.setAllListDegreesAndLabels = (list) => {
         for (let i = 0; i < 27; ++i) {
