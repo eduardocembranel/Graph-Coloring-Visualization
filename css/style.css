@@ -99,7 +99,7 @@ body {
     #svg1,
     #svg2 {
         width: 100%;
-        height: 38vh;
+        height: 37vh;
     }
 
     .text-monospace {
@@ -110,13 +110,13 @@ body {
 @media (max-height: 650px) {
     #svg1,
     #svg2 {
-        height: 37vh;
+        height: 36vh;
     }
 }
 
 @media (max-height: 550px) {
     #svg1,
     #svg2 {
-        height: 35vh;
+        height: 34vh;
     }
 }
