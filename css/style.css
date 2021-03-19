@@ -4,6 +4,10 @@ body {
     background-color: #eeeeee;
 }
 
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 #svg1 {
     width: auto;
     height: 70vh;
