@@ -119,23 +119,16 @@ select {
     width: 60px;
 }
 
-@media (max-width: 1430px) {
+@media only screen and (max-aspect-ratio: 1.2) {
     #buttons-player-container {
         width: 100%;
     }
+
     #select-algorithm-container {
         margin: auto;
         justify-content: center;
     }
-}
 
-@media (max-width: 702px) {
-    #select-algorithm-container {
-        width: 403px;
-    }
-}
-
-@media (max-width: 500px) {
     .btn-player {
         width: 60px;
         font-size: 15px;
