@@ -119,7 +119,7 @@ select {
     width: 60px;
 }
 
-@media only screen and (max-aspect-ratio: 1.2) {
+@media (max-aspect-ratio: 1.2) {
     #buttons-player-container {
         width: 100%;
     }
