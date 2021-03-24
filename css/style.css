@@ -1,7 +1,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: rgb(212, 131, 169);
+    background-color: rgb(113, 145, 233);
 }
 
 a {
@@ -94,14 +94,14 @@ svg {
     font: 20px Arial-BoldMT, sans-serif;
 }
 
-@media (min-aspect-ratio: 2.0) {
+@media (min-aspect-ratio: 18/9) {
     svg {
         width: 40vw;
         height: 75vh;
     }
 }
 
-@media (max-aspect-ratio: 1.2) {
+@media (max-aspect-ratio: 6/5) {
     svg {
         width: 100%;
         height: 35.5vh;
