@@ -20,7 +20,7 @@ class Graph {
         return Math.min(u, v) + '-' + Math.max(u, v);
     }
 
-    basicSearchColoring() {
+    linearSearchColoring() {
         var colors = Array.from({
             length: this.v
         }, e => -1);

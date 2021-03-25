@@ -51,7 +51,7 @@ g.addEdge(23, 24);
 g.addEdge(24, 25);
 g.addEdge(25, 26);
 
-//var log = g.basicSearchColoring(); //ok
+//var log = g.linearSearchColoring(); //ok
 //var log = g.dfsColoring(5); //ok
 //var log = g.bfsColoring(18); //ok
 var log = g.bruteForceColoring(7, 4); //ok
