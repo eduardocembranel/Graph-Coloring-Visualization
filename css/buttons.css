@@ -99,7 +99,7 @@ select {
 
 #select-algorithm-btn {
     margin: 1px 0px 1px 5px;
-    width: 205px;
+    width: 235px;
 }
 
 #select-start-btn {
@@ -129,7 +129,7 @@ select {
     }
 
     #select-algorithm-btn {
-        width: 160px;
+        width: 180px;
     }
 
     #select-start-btn {
