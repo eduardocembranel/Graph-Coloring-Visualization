@@ -103,17 +103,11 @@ select {
 }
 
 #select-start-btn {
-    /*
-    display: none;
-    */
     margin: 1px;
     width: 90px;
 }
 
 #select-n-btn {
-    /*
-    display: none;
-    */
     margin: 1px;
     width: 60px;
 }
@@ -124,6 +118,7 @@ select {
     }
 
     #select-algorithm-container {
+        width: 318px;
         margin: auto;
         justify-content: center;
     }
@@ -147,9 +142,5 @@ select {
 
     #buttons-player-container button {
         margin: 3px 1px 5px 1px;
-    }
-
-    #select-algorithm-container {
-        width: 318px;
     }
 }

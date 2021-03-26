@@ -66,7 +66,7 @@ class Graph {
         addLogToArray(log, u, -1, -1, colors, available, edges, queue);
     }
 
-    dfsColoring(s = 0) {
+    dfsColoring(s = 10) {
         var visited = Array.from({
             length: this.v
         }, e => false);
@@ -276,7 +276,7 @@ class Graph {
             length: maxV
         }, e => -1);
 
-        log = [];
+        var log = [];
 
         addLogToArray(log, -1, -1, -1, colors);
         addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
@@ -337,7 +337,7 @@ class Graph {
         }, e => false);
         var edges = new Set();
 
-        log = [];
+        var log = [];
 
         addLogToArray(log, -1, -1, -1, colors);
         addLogToArray(log, -1, -1, -1, colors, undefined, undefined,
@@ -398,7 +398,7 @@ class Graph {
         var colors = Array.from({
             length: this.v
         }, e => -1);
-        log = [];
+        var log = [];
 
         addLogToArray(log, -1, -1, -1, colors);
 

@@ -983,7 +983,7 @@
   </svg>
 
   <svg id="svg2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 710 687">
-    <g id="svg-colors" transform="scale(0.77, 0.77) translate(30, 70)">
+    <g id="svg-colors">
       <text class="text-bold" x="-30" y="0">Candidate Colors</text>
       <rect id="color1-box" x="30" y="30" width="60" height="60" fill="#eead2d" />
       <line id="color1-line" x1="30" y1="90" x2="90" y2="30" />
@@ -1002,7 +1002,7 @@
       <line id="color5-line2" x1="30" y1="350" x2="90" y2="410" />
     </g>
 
-    <g class="svg-table" transform="scale(0.77, 0.77) translate(600, 35)">
+    <g id="svg-table-degrees" class="svg-table">
       <text class="text-bold" x="38" y="35">Vertex Degrees</text>
 
       <rect id="list0-box-degree" x="30" y="65" width="56" height="56" />
@@ -1090,7 +1090,7 @@
 
     </g>
 
-    <g class="svg-table" transform="scale(0.77, 0.77) translate(300, 35)">
+    <g id="svg-table-queue" class="svg-table">
       <text class="text-bold" id="svg" x="38" y="35">Queue</text>
       <rect x="30" y="65" width="60" height="60" />
       <rect x="30" y="125" width="60" height="60" />
@@ -1138,22 +1138,48 @@
 
   <div id="select-algorithm-container">
     <select id="select-algorithm-btn" title="Choose algorithm to solve" class="btn-player">
-      <option selected disabled value="Choose Algorithm">Choose Algorithm</option>
-      <option value="Basic Search">Basic Search</option>
-      <option value="Blind DFS">Blind DFS</option>
-      <option value="Blind BFS">Blind BFS</option>
-      <option value="Welsh Powell">Welsh Powell</option>
-      <option value="DFS with heuristic">DFS with heuristic</option>
-      <option value="BFS with heuristic">BFS with heuristic</option>
-      <option value="Brute Force">Brute Force</option>
-      <option value="Brute Force DFS">Brute Force DFS</option>
+      <option selected disabled value="-1">Choose Algorithm</option>
+      <option value="1">Blind Linear Search</option>
+      <option value="2">Blind DFS</option>
+      <option value="3">Blind BFS</option>
+      <option value="4">Welsh Powell</option>
+      <option value="5">DFS with heuristic</option>
+      <option value="6">BFS with heuristic</option>
+      <option value="7">Brute Force</option>
+      <option value="8">Brute Force DFS</option>
     </select>
     <select id="select-start-btn" title="Starting Vertex" class="btn-player">
-      <option selected disabled value="Start">Start</option>
-      <option value="RS">RS</option>
+      <option selected disabled value="-1">Start</option>
+      <option value="0">RS</option>
+      <option value="1">SC</option>
+      <option value="2">PR</option>
+      <option value="3">SP</option>
+      <option value="4">MG</option>
+      <option value="5">RJ</option>
+      <option value="6">ES</option>
+      <option value="7">MS</option>
+      <option value="8">MT</option>
+      <option value="9">GO</option>
+      <option value="10">DF</option>
+      <option value="11">RO</option>
+      <option value="12">RR</option>
+      <option value="13">AC</option>
+      <option value="14">AM</option>
+      <option value="15">PA</option>
+      <option value="16">AP</option>
+      <option value="17">TO</option>
+      <option value="18">BA</option>
+      <option value="19">MA</option>
+      <option value="20">PI</option>
+      <option value="21">CE</option>
+      <option value="22">RN</option>
+      <option value="23">PB</option>
+      <option value="24">PE</option>
+      <option value="25">AL</option>
+      <option value="26">SE</option>
     </select>
     <select id="select-n-btn" title="Subgraph Size" class="btn-player">
-      <option selected disabled value="N">N</option>
+      <option selected disabled value="-1">N</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>

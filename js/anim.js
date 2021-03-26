@@ -3,6 +3,11 @@ var AnimManager = function (log) {
     this.animDelay = 2010 - uiManager.getAnimSpeed();
     this.log = log;
     this.logIdx = 0;
+    
+    this.setLog = (log) => {
+        this.log = log;
+        this.logIdx = 0;
+    }
 
     this.delay = () => {
         return new Promise((resolve, reject) => {

@@ -1,5 +1,5 @@
 var uiManager = new function () {
-    this.statesColors = ['#eead2d', '#FF69B4', '#228b22', '#3b83bd', '#00dddd'];
+    this.statesColors = ['#eead2d', '#ff69b4', '#228b22', '#3b83bd', '#00dddd'];
     this.stateDefaultColor = '#888888';
 
     this.stateAcronyms = [
@@ -73,27 +73,6 @@ var uiManager = new function () {
         return statesEdges;
     })();
 
-    this.setStateEdge = (edge, active) => {
-        if (active) {
-            this.statesEdges.get(edge).style.visibility = 'visible';
-        } else {
-            this.statesEdges.get(edge).style.visibility = 'hidden';
-        }
-    };
-
-    this.setAllStatesEdges = (edges) => {
-        //initially set all edges as hidden
-        for (const key of this.statesEdges.keys()) {
-            this.setStateEdge(key, false);
-        }
-
-        if (edges) {
-            for (const edge of edges) {
-                this.setStateEdge(edge, true);
-            }
-        }
-    };
-
     this.buttons = (function () {
         var buttons = new Map();
         buttons.set('play-pause', document.getElementById('play-pause'));
@@ -110,6 +89,118 @@ var uiManager = new function () {
             document.getElementById('select-n-btn'));
         return buttons;
     })();
+
+    this.queueTexts = (function () {
+        var queueTexts = [];
+        for (let i = 0; i < 13; ++i) {
+            queueTexts.push(document.getElementById(`queue${i}-text`));
+        }
+        return queueTexts;
+    })();
+
+    this.colorBoxes = [
+        document.getElementById('color1-box'),
+        document.getElementById('color2-box'),
+        document.getElementById('color3-box'),
+        document.getElementById('color4-box'),
+        document.getElementById('color5-box')
+    ];
+
+    this.colorLines = [
+        document.getElementById('color1-line'),
+        document.getElementById('color2-line'),
+        document.getElementById('color3-line'),
+        document.getElementById('color4-line'),
+        document.getElementById('color5-line'),
+        document.getElementById('color1-line2'),
+        document.getElementById('color2-line2'),
+        document.getElementById('color3-line2'),
+        document.getElementById('color4-line2'),
+        document.getElementById('color5-line2'),
+    ];
+
+    this.listBoxesDegree = (function() {
+        var listBoxesDegree = [];
+        for (let i = 0; i < 27; ++i) {
+            var elemId = `list${i}-box-degree`;
+            listBoxesDegree.push(document.getElementById(elemId));
+        }
+        return listBoxesDegree;
+    })();
+
+    this.listLabelsDegree = (function() {
+        var listLabelsDegree = [];
+        for (let i = 0; i < 27; ++i) {
+            var elemId = `list${i}-label-degree`;
+            listLabelsDegree.push(document.getElementById(elemId));
+        }
+        return listLabelsDegree;
+    })();
+
+    this.listDegrees = (function() {
+        var listDegrees = [];
+        for (let i = 0; i < 27; ++i) {
+            var elemId = `list${i}-degree`;
+            listDegrees.push(document.getElementById(elemId));
+        }
+        return listDegrees;
+    })();
+
+    this.svgObjects = [
+        document.getElementById('svg-colors'),
+        document.getElementById('svg-table-degrees'),
+        document.getElementById('svg-table-queue')
+    ];
+
+    this.reset = () => {
+        this.resetStatesColors();
+        this.resetStatesEdges();
+        this.resetStatesBorders();
+        this.setAllStateOpacity();
+        this.setAllColorsLines();
+        this.setAllBoxesBorders();
+        this.setAllQueueStates();
+        this.resetListDegreesAndLabels();
+        this.resetListBoxesDegree();
+    };
+
+    this.hideSvgObj = (objIdx, hide = true) => {
+        if (hide) {
+            this.svgObjects[objIdx].style.visibility = 'hidden';
+        } else {
+            this.svgObjects[objIdx].style.visibility = 'visible';
+        }
+    };
+
+    this.transformSvgObj = (objIdx, transX, transY, 
+        scaleX = 0.77, scaleY = 0.77) => {
+        this.svgObjects[objIdx].style.transform = 
+            `scale(${scaleX}, ${scaleY}) translate(${transX}px, ${transY}px)`;
+    };
+
+    this.setStateEdge = (edge, active) => {
+        if (active) {
+            this.statesEdges.get(edge).style.visibility = 'visible';
+        } else {
+            this.statesEdges.get(edge).style.visibility = 'hidden';
+        }
+    };
+
+    this.setAllStatesEdges = (edges) => {
+        this.resetStatesEdges();
+
+        if (edges) {
+            for (const edge of edges) {
+                this.setStateEdge(edge, true);
+            }
+        }
+    };
+
+    this.resetStatesEdges = () => {
+        for (const key of this.statesEdges.keys()) {
+            this.setStateEdge(key, false);
+        }
+    };
 
     this.getAnimSpeed = () => {
         return this.buttons.get('anim-speed').value;
@@ -135,48 +226,113 @@ var uiManager = new function () {
         if (disable) {
             this.buttons.get(btnName).style.display = 'none';
         } else {
-            this.buttons.get(btnName).style.disable = 'inline';
+            this.buttons.get(btnName).style.display = 'inline';
         }
     };
 
-    this.setModeAlg1 = () => {
-        this.hideButton('select-start');
-        this.hideButton('select-n');
+    this.updateAlgMode = (alg) => {
+        this['setAlgMode' + alg]();
     };
 
-    this.setModeAlg2 = () => {
+    this.setAlgMode1 = () => {
+        this.reset();
+        this.hideButton('select-start');
+        this.hideButton('select-n');
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1);
+        this.hideSvgObj(2);
+
+        this.transformSvgObj(0, 340, 45, 0.9, 0.9);
+    };
+
+    this.setAlgMode2 = () => {
+        this.reset();
         this.hideButton('select-start', false);
         this.hideButton('select-n');
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1);
+        this.hideSvgObj(2);
+
+        this.transformSvgObj(0, 340, 45, 0.9, 0.9);
     };
 
-    this.setModeAlg3 = () => {
+    this.setAlgMode3 = () => {
+        this.reset();
         this.hideButton('select-start', false);
         this.hideButton('select-n');
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1);
+        this.hideSvgObj(2, false);
+
+        this.transformSvgObj(0, 225, 45, 0.9, 0.9);
+        this.transformSvgObj(2, 545, 20, 0.77, 0.77);
     };
 
-    this.setModeAlg4 = () => {
+    this.setAlgMode4 = () => {
+        this.reset();
         this.hideButton('select-start');
         this.hideButton('select-n');
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1, false);
+        this.hideSvgObj(2);
+
+        this.transformSvgObj(0, 205, 45, 0.9, 0.9);
+        this.transformSvgObj(1, 505, 20, 0.77, 0.77);
     };
 
-    this.setModeAlg5 = () => {
+    this.setAlgMode5 = () => {
+        this.reset();
         this.hideButton('select-start');
         this.hideButton('select-n');
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1, false);
+        this.hideSvgObj(2);
+
+        this.transformSvgObj(0, 205, 45, 0.9, 0.9);
+        this.transformSvgObj(1, 505, 20, 0.77, 0.77);
     };
 
-    this.setModeAlg6 = () => {
+    this.setAlgMode6 = () => {
+        this.reset();
         this.hideButton('select-start');
         this.hideButton('select-n');
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1, false);
+        this.hideSvgObj(2, false);
+
+        this.transformSvgObj(0, 80, 45, 0.9, 0.9);
+        this.transformSvgObj(1, 590, 20, 0.77, 0.77);
+        this.transformSvgObj(2, 380, 20, 0.77, 0.77);
     };
 
-    this.setModeAlg7 = () => {
+    this.setAlgMode7 = () => {
+        this.reset();
         this.hideButton('select-start');
         this.hideButton('select-n', false);
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1);
+        this.hideSvgObj(2);
+
+        this.transformSvgObj(0, 340, 45, 0.9, 0.9);
     };
 
-    this.setModeAlg8 = () => {
-        this.hideButton('select-start', false);
+    this.setAlgMode8 = () => {
+        this.reset();
+        this.hideButton('select-start');
         this.hideButton('select-n', false);
+
+        this.hideSvgObj(0, false);
+        this.hideSvgObj(1);
+        this.hideSvgObj(2);
+
+        this.transformSvgObj(0, 340, 45, 0.9, 0.9);
     };
 
     this.setButtonsPlayMode = (playMode) => {
@@ -196,14 +352,6 @@ var uiManager = new function () {
             '<i class="fa fa-play"></i>';
     }
 
-    this.queueTexts = (function () {
-        var queueTexts = [];
-        for (let i = 0; i < 13; ++i) {
-            queueTexts.push(document.getElementById(`queue${i}-text`));
-        }
-        return queueTexts;
-    })();
-
     this.setQueueState = (idx, stateIdx) => {
         let s = (stateIdx !== -1) ? this.stateAcronyms[stateIdx].toUpperCase() : '';
         this.queueTexts[idx].innerHTML = s;
@@ -218,27 +366,6 @@ var uiManager = new function () {
             }
         }
     };
-
-    this.colorBoxes = [
-        document.getElementById('color1-box'),
-        document.getElementById('color2-box'),
-        document.getElementById('color3-box'),
-        document.getElementById('color4-box'),
-        document.getElementById('color5-box')
-    ];
-
-    this.colorLines = [
-        document.getElementById('color1-line'),
-        document.getElementById('color2-line'),
-        document.getElementById('color3-line'),
-        document.getElementById('color4-line'),
-        document.getElementById('color5-line'),
-        document.getElementById('color1-line2'),
-        document.getElementById('color2-line2'),
-        document.getElementById('color3-line2'),
-        document.getElementById('color4-line2'),
-        document.getElementById('color5-line2'),
-    ];
 
     this.setStateColor = (stateIdx, colorIdx) => {
         if (colorIdx === -1) {
@@ -273,6 +400,12 @@ var uiManager = new function () {
             } else {
                 this.setStateBorder(i, 'normal');
             }
+        }
+    };
+
+    this.resetStatesBorders = () => {
+        for (let i = 0; i < 27; ++i) {
+            this.setStateBorder(i, 'normal');
         }
     };
 
@@ -324,6 +457,12 @@ var uiManager = new function () {
         });
     };
 
+    this.resetStatesColors = () => {
+        for (let i = 0; i < 27; ++i) {
+            this.states[i].style.fill = this.stateDefaultColor;
+        }
+    };
+
     this.setStateOpacity = (stateIdx, opacity) => {
         this.states[stateIdx].style.opacity = opacity;
     }
@@ -337,33 +476,6 @@ var uiManager = new function () {
             }
         }
     }
-
-    this.listBoxesDegree = (function() {
-        var listBoxesDegree = [];
-        for (let i = 0; i < 27; ++i) {
-            var elemId = `list${i}-box-degree`;
-            listBoxesDegree.push(document.getElementById(elemId));
-        }
-        return listBoxesDegree;
-    })();
-
-    this.listLabelsDegree = (function() {
-        var listLabelsDegree = [];
-        for (let i = 0; i < 27; ++i) {
-            var elemId = `list${i}-label-degree`;
-            listLabelsDegree.push(document.getElementById(elemId));
-        }
-        return listLabelsDegree;
-    })();
-
-    this.listDegrees = (function() {
-        var listDegrees = [];
-        for (let i = 0; i < 27; ++i) {
-            var elemId = `list${i}-degree`;
-            listDegrees.push(document.getElementById(elemId));
-        }
-        return listDegrees;
-    })();
 
     this.setListDegree = (listIdx, degree) => {
         let s = (degree !== -1) ? degree : '';
@@ -400,6 +512,12 @@ var uiManager = new function () {
         }
     };
 
+    this.resetListBoxesDegree = () => {
+        for (let i = 0; i < 27; ++i) {
+            this.setListBoxDegree(i, 'normal');
+        }
+    };
+
     this.setAllListDegreesAndLabels = (list) => {
         for (let i = 0; i < 27; ++i) {
             if (!list) {
@@ -421,5 +539,12 @@ var uiManager = new function () {
             }
         }
     };
+
+    this.resetListDegreesAndLabels = () => {
+        for (let i = 0; i < 27; ++i) {
+            this.setListDegree(i, -1);
+            this.setListLabelDegree(i, -1);
+        }
+    }
 
 };

@@ -1,82 +1,27 @@
-<rect id="list0-box-degree" x="30" y="65" width="56" height="56" />
-<rect id="list1-box-degree" x="30" y="121" width="56" height="56" />
-<rect id="list2-box-degree" x="30" y="177" width="56" height="56" />
-<rect id="list3-box-degree" x="30" y="233" width="56" height="56" />
-<rect id="list4-box-degree" x="30" y="289" width="56" height="56" />
-<rect id="list5-box-degree" x="30" y="345" width="56" height="56" />
-<rect id="list6-box-degree" x="30" y="401" width="56" height="56" />
-<rect id="list7-box-degree" x="30" y="457" width="56" height="56" />
-<rect id="list8-box-degree" x="30" y="513" width="56" height="56" />
-<rect id="list9-box-degree" x="30" y="569" width="56" height="56" />
-<rect id="list10-box-degree" x="30" y="625" width="56" height="56" />
-<rect id="list11-box-degree" x="30" y="681" width="56" height="56" />
-<rect id="list12-box-degree" x="30" y="737" width="56" height="56" />
-<rect id="list13-box-degree" x="30" y="793" width="56" height="56" />
-<rect id="list14-box-degree" x="180" y="65" width="56" height="56" />
-<rect id="list15-box-degree" x="180" y="121" width="56" height="56" />
-<rect id="list16-box-degree" x="180" y="177" width="56" height="56" />
-<rect id="list17-box-degree" x="180" y="233" width="56" height="56" />
-<rect id="list18-box-degree" x="180" y="289" width="56" height="56" />
-<rect id="list19-box-degree" x="180" y="345" width="56" height="56" />
-<rect id="list20-box-degree" x="180" y="401" width="56" height="56" />
-<rect id="list21-box-degree" x="180" y="457" width="56" height="56" />
-<rect id="list22-box-degree" x="180" y="513" width="56" height="56" />
-<rect id="list23-box-degree" x="180" y="569" width="56" height="56" />
-<rect id="list24-box-degree" x="180" y="625" width="56" height="56" />
-<rect id="list25-box-degree" x="180" y="681" width="56" height="56" />
-<rect id="list26-box-degree" x="180" y="737" width="56" height="56" />
-<rect id="list27-box-degree" x="180" y="793" width="56" height="56" />
-<text id="list0-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 100)"></text>
-<text id="list1-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 156)"></text>
-<text id="list2-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 212)"></text>
-<text id="list3-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 268)"></text>
-<text id="list4-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 324)"></text>
-<text id="list5-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 380)"></text>
-<text id="list6-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 436)"></text>
-<text id="list7-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 492)"></text>
-<text id="list8-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 548)"></text>
-<text id="list9-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 604)"></text>
-<text id="list10-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 660)"></text>
-<text id="list11-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 716)"></text>
-<text id="list12-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 772)"></text>
-<text id="list13-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, -15, 828)"></text>
-<text id="list14-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 100)"></text>
-<text id="list15-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 156)"></text>
-<text id="list16-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 212)"></text>
-<text id="list17-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 268)"></text>
-<text id="list18-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 324)"></text>
-<text id="list19-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 380)"></text>
-<text id="list20-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 436)"></text>
-<text id="list21-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 492)"></text>
-<text id="list22-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 548)"></text>
-<text id="list23-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 604)"></text>
-<text id="list24-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 660)"></text>
-<text id="list25-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 716)"></text>
-<text id="list26-label-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 135, 772)"></text>
-<text id="list0-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 100)"></text>
-<text id="list1-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 156)"></text>
-<text id="list2-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 212)"></text>
-<text id="list3-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 268)"></text>
-<text id="list4-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 324)"></text>
-<text id="list5-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 380)"></text>
-<text id="list6-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 436)"></text>
-<text id="list7-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 492)"></text>
-<text id="list8-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 548)"></text>
-<text id="list9-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 604)"></text>
-<text id="list10-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 660)"></text>
-<text id="list11-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 716)"></text>
-<text id="list12-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 772)"></text>
-<text id="list13-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 52, 828)"></text>
-<text id="list14-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 100)"></text>
-<text id="list15-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 156)"></text>
-<text id="list16-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 212)"></text>
-<text id="list17-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 268)"></text>
-<text id="list18-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 324)"></text>
-<text id="list19-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 380)"></text>
-<text id="list20-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 436)"></text>
-<text id="list21-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 492)"></text>
-<text id="list22-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 548)"></text>
-<text id="list23-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 604)"></text>
-<text id="list24-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 660)"></text>
-<text id="list25-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 716)"></text>
-<text id="list26-degree" class="text-monospace" transform="matrix(1, 0, 0, 1, 202, 772)"></text>
+<option value="0">RS</option>
+<option value="1">SC</option>
+<option value="2">PR</option>
+<option value="3">SP</option>
+<option value="4">MG</option>
+<option value="5">RJ</option>
+<option value="6">ES</option>
+<option value="7">MS</option>
+<option value="8">MT</option>
+<option value="9">GO</option>
+<option value="10">DF</option>
+<option value="11">RO</option>
+<option value="12">RR</option>
+<option value="13">AC</option>
+<option value="14">AM</option>
+<option value="15">PA</option>
+<option value="16">AP</option>
+<option value="17">TO</option>
+<option value="18">BA</option>
+<option value="19">MA</option>
+<option value="20">PI</option>
+<option value="21">CE</option>
+<option value="22">RN</option>
+<option value="23">PB</option>
+<option value="24">PE</option>
+<option value="25">AL</option>
+<option value="26">SE</option>
