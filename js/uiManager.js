@@ -212,8 +212,13 @@ var uiManager = new function () {
         }
     };
 
-    this.getAnimSpeed = () => {
-        return this.buttons.get('anim-speed').value;
+    this.getAnimDelay = () => {
+        var val = parseInt(this.buttons.get('anim-speed').value, 10);
+        var min = parseInt(this.buttons.get('anim-speed').min, 10);
+        var max = parseInt(this.buttons.get('anim-speed').max, 10);
+        var range = max - min;
+
+        return range - val - min;
     };
 
     this.disableButtons = (disable) => {

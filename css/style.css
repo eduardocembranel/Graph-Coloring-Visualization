@@ -47,7 +47,12 @@ svg {
     visibility: visible;
 }
 
+#svg-colors, #svg-table-degrees, #svg-table-queue {
+    visibility: hidden;
+}
+
 #svg-colors line {
+    visibility: hidden;
     fill: #888888;
     stroke: #000000;
     stroke-width: 4.2;
@@ -91,6 +96,7 @@ svg {
 }
 
 #svg-states-edges line {
+    visibility: hidden;
     fill: #888888;
     stroke: #000000;
     stroke-width: 4.0;

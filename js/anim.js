@@ -1,6 +1,6 @@
 var AnimManager = function (log) {
     this.running = false;
-    this.animDelay = 2010 - uiManager.getAnimSpeed();
+    this.animDelay = uiManager.getAnimDelay();
     this.log = log;
     this.logIdx = 0;
     
@@ -77,7 +77,7 @@ var AnimManager = function (log) {
     };
 
     this.changeSpeed = () => {
-        this.animDelay = 2010 - uiManager.getAnimSpeed();
+        this.animDelay = uiManager.getAnimDelay();
     };
 
     this.skipBack = () => {
