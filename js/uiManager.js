@@ -152,7 +152,18 @@ var uiManager = new function () {
         document.getElementById('svg-table-queue')
     ];
 
+    this.opCountTxt = {
+        wrapper: document.getElementById('svg-opCount'),
+        txt: document.getElementById('opCount-text')
+    };
+
+    this.setOpCount = (count) => {
+        this.opCountTxt.txt.innerHTML = count;
+        this.opCountTxt.wrapper.style.visibility = 'visible';
+    };
+
     this.reset = () => {
+        this.resetOpCount();
         this.resetStatesColors();
         this.resetStatesEdges();
         this.resetStatesBorders();
@@ -172,8 +183,7 @@ var uiManager = new function () {
         }
     };
 
-    this.transformSvgObj = (objIdx, transX, transY, 
-        scaleX = 0.77, scaleY = 0.77) => {
+    this.transformSvgObj = (objIdx, transX, transY, scaleX, scaleY) => {
         this.svgObjects[objIdx].style.transform = 
             `scale(${scaleX}, ${scaleY}) translate(${transX}px, ${transY}px)`;
     };
@@ -407,6 +417,11 @@ var uiManager = new function () {
         for (let i = 0; i < 27; ++i) {
             this.setStateBorder(i, 'normal');
         }
+    };
+
+
+    this.resetOpCount = () => {
+        this.opCountTxt.wrapper.style.visibility = 'hidden';
     };
 
     this.setColorLine = (colorIdx, active) => {

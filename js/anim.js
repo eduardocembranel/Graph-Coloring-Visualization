@@ -46,6 +46,7 @@ var AnimManager = function (log) {
     this.animByIdx = () => {
         const log = this.log[this.logIdx];
 
+        uiManager.setOpCount(log.opCount);
         uiManager.setAllStatesColors(log.colors);
         uiManager.setAllStateOpacity(log.subgraphSize);
         uiManager.setAllColorsLines(log.availableColors);
@@ -53,7 +54,7 @@ var AnimManager = function (log) {
         uiManager.setAllStatesBorders(log.curVertex, log.curNeighbor);
         uiManager.setAllStatesEdges(log.statesEdges);
         uiManager.setAllQueueStates(log.queue);
-        uiManager.setAllListDegreesAndLabels(log.listDegrees);
+        uiManager.setAllListDegreesAndLabels(log.listDeg);
         uiManager.setAllListBoxesDegree(log.curList, log.neighborList);
     };
 

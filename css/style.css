@@ -47,12 +47,7 @@ svg {
     visibility: visible;
 }
 
-#svg-colors, #svg-table-degrees, #svg-table-queue {
-    visibility: hidden;
-}
-
 #svg-colors line {
-    visibility: hidden;
     fill: #888888;
     stroke: #000000;
     stroke-width: 4.2;
@@ -66,35 +61,47 @@ svg {
     stroke-opacity: 0.9;
 }
 
-.text-bold {
-    fill: #000000;
-    stroke: #000000;
-    stroke-width: 1.0;
+.text-arial {
     font: 24px Arial-BoldMT, sans-serif;
 }
 
 .text-monospace {
-    font: 22px 'Courier New', monospace;
+    font: 24px 'Courier New', monospace;
+}
+
+.text-bold {
+    stroke-width: 1.0 !important;
+    stroke: #000000;
+}
+
+.text-thin {
+    stroke-width: 0.5 !important;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-28 {
+    font-size: 28px;
+}
+
+.font-30 {
+    font-size: 30px;
 }
 
 #svg-states-edges line {
-    visibility: hidden;
     fill: #888888;
     stroke: #000000;
     stroke-width: 4.0;
 }
 
-#svg-colors,
+#svg-colors rect,
 #svg-labels rect {
     stroke: #000000;
     stroke-width: 4.0;
     fill-opacity: 1.0;
     stroke-opacity: 0.9;
-}
-
-#svg-labels text {
-    fill: #000000;
-    font: 20px Arial-BoldMT, sans-serif;
 }
 
 @media (min-aspect-ratio: 18/9) {
@@ -108,6 +115,14 @@ svg {
     svg {
         width: 100%;
         height: 35.5vh;
+    }
+
+    #svg-table-degrees text, #svg-table-queue text, #opCount-text {
+        font-size: 40px !important;
+    }
+
+    #svg-colors text {
+        font-size: 35px !important;
     }
 }
 
