@@ -1,3 +1,7 @@
+import Graph from './graph.js';
+import AnimManager from './anim.js';
+import { uiManager } from './uiManager.js';
+
 //graph declaration
 var g = new Graph(27);
 g.addEdge(0, 1);

@@ -1,4 +1,6 @@
-var AnimManager = function (log) {
+import { uiManager } from './uiManager.js';
+
+export default function AnimManager (log) {
     this.running = false;
     this.animDelay = uiManager.getAnimDelay();
     this.log = log;

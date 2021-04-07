@@ -1,5 +1,6 @@
 var uiManager = new function () {
-    this.statesColors = ['#eead2d', '#ff69b4', '#228b22', '#3b83bd', '#00dddd'];
+    this.statesColors = [
+        '#eead2d', '#ff69b4', '#228b22', '#3b83bd', '#00dddd'];
     this.stateDefaultColor = '#888888';
 
     this.stateAcronyms = [
@@ -360,12 +361,12 @@ var uiManager = new function () {
                 '<i class="fa fa-play"></i>';
             this.disableButtons(false);
         }
-    }
+    };
 
     this.isPlayButton = () => {
         return this.buttons.get('play-pause').innerHTML === 
             '<i class="fa fa-play"></i>';
-    }
+    };
 
     this.setQueueState = (idx, stateIdx) => {
         let s = (stateIdx !== -1) ? this.stateAcronyms[stateIdx].toUpperCase() : '';
@@ -485,7 +486,7 @@ var uiManager = new function () {
 
     this.setStateOpacity = (stateIdx, opacity) => {
         this.states[stateIdx].style.opacity = opacity;
-    }
+    };
 
     this.setAllStateOpacity = (subgraphSize) => {
         for (let i = 0; i < 27; ++i) {
@@ -565,6 +566,7 @@ var uiManager = new function () {
             this.setListDegree(i, -1);
             this.setListLabelDegree(i, -1);
         }
-    }
-
+    };
 };
+
+export { uiManager };

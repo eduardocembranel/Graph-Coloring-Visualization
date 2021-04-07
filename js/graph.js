@@ -1,4 +1,4 @@
-class Graph {
+export default class Graph {
     constructor(v) {
         this.v = v;
         this.adj = Array.from({
